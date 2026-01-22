@@ -40,7 +40,7 @@ A self-navigating robotic car built with an Arduino, an L298N Motor Driver, and 
 | **Ultrasonic** | Echo | 4 | ECHO |
 | **Servo** | Rotation | 11 | Signal |
 | **Buzzer** | Alert | A2 | (+) |
-⚙️ How it Works
+
 
     Forward Drive: The robot moves forward while constantly checking the distance in front.
 
