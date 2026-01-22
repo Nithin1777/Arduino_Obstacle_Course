@@ -26,22 +26,20 @@ A self-navigating robotic car built with an Arduino, an L298N Motor Driver, and 
     Power: 7.4V - 12V Li-ion battery pack or AA battery holder
 
     Misc: Piezo Buzzer, Jumper Wires, Robot Chassis
+### 🔌 Pin Mapping Table
 
-📌 Pin Mapping
-Motors (L298N)
-Component	Arduino Pin	Description
-ENA	5	Speed Control Left (PWM)
-IN1	6	Direction 1 Left
-IN2	7	Direction 2 Left
-IN3	8	Direction 1 Right
-IN4	9	Direction 2 Right
-ENB	3	Speed Control Right (PWM)
-Sensors & Accessories
-Component	Arduino Pin	Description
-TRIG	2	Ultrasound Trigger
-ECHO	4	Ultrasound Echo
-SERVO	11	PWM Signal for Servo
-BUZZER	A2	Positive terminal of Buzzer
+| Component | Function | Arduino Pin | Driver Pin |
+| :--- | :--- | :---: | :---: |
+| **Left Motor** | Speed (PWM) | 5 | ENA |
+| **Left Motor** | Direction | 6 | IN1 |
+| **Left Motor** | Direction | 7 | IN2 |
+| **Right Motor** | Direction | 8 | IN3 |
+| **Right Motor** | Direction | 9 | IN4 |
+| **Right Motor** | Speed (PWM) | 3 | ENB |
+| **Ultrasonic** | Trigger | 2 | TRIG |
+| **Ultrasonic** | Echo | 4 | ECHO |
+| **Servo** | Rotation | 11 | Signal |
+| **Buzzer** | Alert | A2 | (+) |
 ⚙️ How it Works
 
     Forward Drive: The robot moves forward while constantly checking the distance in front.
