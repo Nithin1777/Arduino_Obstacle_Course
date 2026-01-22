@@ -1,7 +1,7 @@
 Obstacle Avoiding Robot (Arduino)
 
 A self-navigating robotic car built with an Arduino, an L298N Motor Driver, and an HC-SR04 Ultrasonic Sensor mounted on a servo motor. The robot autonomously detects obstacles, scans its surroundings, and chooses the clearest path to continue moving.
-🚀 Features
+ Features
 
     Intelligent Scanning: When an obstacle is detected within 30cm, the robot stops and rotates the sensor left and right to compare distances.
 
@@ -11,7 +11,7 @@ A self-navigating robotic car built with an Arduino, an L298N Motor Driver, and 
 
     Speed Control: Uses PWM (Pulse Width Modulation) to manage motor speeds for smoother movements.
 
-🛠️ Hardware Requirements
+Hardware Requirements
 
     Microcontroller: Arduino Uno (or compatible)
 
@@ -26,7 +26,7 @@ A self-navigating robotic car built with an Arduino, an L298N Motor Driver, and 
     Power: 7.4V - 12V Li-ion battery pack or AA battery holder
 
     Misc: Piezo Buzzer, Jumper Wires, Robot Chassis
-### 🔌 Pin Mapping Table
+###  Pin Mapping Table
 
 | Component | Function | Arduino Pin | Driver Pin |
 | :--- | :--- | :---: | :---: |
@@ -54,7 +54,7 @@ A self-navigating robotic car built with an Arduino, an L298N Motor Driver, and 
 
         If Both are blocked: Reverse, then turn 180 degrees.
 
-💻 Installation
+ Installation
 
     Ensure you have the Servo library installed in your Arduino IDE (pre-installed by default).
 
