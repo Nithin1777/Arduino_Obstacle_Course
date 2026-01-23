@@ -1,67 +1,168 @@
-Obstacle Avoiding Robot (Arduino)
+# Obstacle Avoiding Robot 🤖
 
-A self-navigating robotic car built with an Arduino, an L298N Motor Driver, and an HC-SR04 Ultrasonic Sensor mounted on a servo motor. The robot autonomously detects obstacles, scans its surroundings, and chooses the clearest path to continue moving.
- Features
+An autonomous Arduino-based robot car that uses ultrasonic sensors and a servo-mounted scanner to detect and navigate around obstacles in real-time.
 
-    Intelligent Scanning: When an obstacle is detected within 30cm, the robot stops and rotates the sensor left and right to compare distances.
+## Features
 
-    Glitched Reading Protection: Includes logic to filter out ultrasonic noise and "stuck" sensor readings.
+- **Autonomous Navigation**: Moves forward and automatically detects obstacles
+- **Smart Scanning**: Servo-mounted ultrasonic sensor scans left and right to find the best path
+- **Obstacle Avoidance**: Makes intelligent decisions to turn or reverse when blocked
+- **Audio Feedback**: Buzzer alerts when obstacles are detected
+- **Sensor Validation**: Multi-reading validation system to filter out false sensor data
 
-    Automatic Backtracking: If both sides are blocked, the robot reverses and performs a wide turn to escape corners.
+## Hardware Requirements
 
-    Speed Control: Uses PWM (Pulse Width Modulation) to manage motor speeds for smoother movements.
+### Components
 
-Hardware Requirements
+- Arduino board (Uno/Nano recommended)
+- L298N Motor Driver Module
+- 2x DC Motors with wheels
+- HC-SR04 Ultrasonic Sensor
+- SG90 Servo Motor
+- Active Buzzer
+- Chassis and wheels
+- Battery pack (7-12V recommended)
+- Jumper wires
 
-    Microcontroller: Arduino Uno (or compatible)
+### Pin Configuration
 
-    Motor Driver: L298N Dual H-Bridge
+| Component | Arduino Pin |
+|-----------|-------------|
+| Motor Driver ENA | 5 (PWM) |
+| Motor Driver IN1 | 6 |
+| Motor Driver IN2 | 7 |
+| Motor Driver IN3 | 8 |
+| Motor Driver IN4 | 9 |
+| Motor Driver ENB | 3 (PWM) |
+| Ultrasonic TRIG | 2 |
+| Ultrasonic ECHO | 4 |
+| Servo Signal | 11 (PWM) |
+| Buzzer | A2 |
 
-    Motors: 2x DC Gear Motors
+## Wiring Diagram
 
-    Sensor: HC-SR04 Ultrasonic Sensor
+```
+Arduino          L298N Motor Driver
+  5   ---------> ENA (Enable A - PWM)
+  6   ---------> IN1 (Motor A Direction)
+  7   ---------> IN2 (Motor A Direction)
+  8   ---------> IN3 (Motor B Direction)
+  9   ---------> IN4 (Motor B Direction)
+  3   ---------> ENB (Enable B - PWM)
 
-    Actuator: SG90 Micro Servo
+Arduino          HC-SR04 Sensor
+  2   ---------> TRIG
+  4   ---------> ECHO
+ 5V   ---------> VCC
+ GND  ---------> GND
 
-    Power: 7.4V - 12V Li-ion battery pack or AA battery holder
+Arduino          Servo Motor
+  11  ---------> Signal (Orange/Yellow)
+ 5V   ---------> VCC (Red)
+ GND  ---------> GND (Brown/Black)
 
-    Misc: Piezo Buzzer, Jumper Wires, Robot Chassis
-###  Pin Mapping Table
+Arduino          Buzzer
+  A2  ---------> Positive (+)
+ GND  ---------> Negative (-)
+```
 
-| Component | Function | Arduino Pin | Driver Pin |
-| :--- | :--- | :---: | :---: |
-| **Left Motor** | Speed (PWM) | 5 | ENA |
-| **Left Motor** | Direction | 6 | IN1 |
-| **Left Motor** | Direction | 7 | IN2 |
-| **Right Motor** | Direction | 8 | IN3 |
-| **Right Motor** | Direction | 9 | IN4 |
-| **Right Motor** | Speed (PWM) | 3 | ENB |
-| **Ultrasonic** | Trigger | 2 | TRIG |
-| **Ultrasonic** | Echo | 4 | ECHO |
-| **Servo** | Rotation | 11 | Signal |
-| **Buzzer** | Alert | A2 | (+) |
+## Installation
 
+1. **Install Arduino IDE**: Download from [arduino.cc](https://www.arduino.cc/en/software)
 
-    Forward Drive: The robot moves forward while constantly checking the distance in front.
+2. **Install Required Library**:
+   - Open Arduino IDE
+   - Go to `Sketch` → `Include Library` → `Manage Libraries`
+   - Search for "Servo" and install the official Servo library
 
-    Detection: If an object is detected within STOP_DISTANCE (30cm), the stopCar() function is called.
+3. **Upload Code**:
+   - Connect your Arduino to your computer via USB
+   - Open the `.ino` file in Arduino IDE
+   - Select your board: `Tools` → `Board` → `Arduino Uno` (or your board)
+   - Select the port: `Tools` → `Port` → (select your Arduino port)
+   - Click the Upload button (→)
 
-    Scanning: The executeScan() function triggers the servo to move to 160° (Left) and 20° (Right).
+## How It Works
 
-    Decision: * If Left distance > Right distance and above 40cm: Turn Left.
+1. **Forward Movement**: The robot moves forward at maximum speed when the path is clear
+2. **Obstacle Detection**: When an obstacle is detected within 30cm, the robot stops
+3. **Scanning**: The servo rotates the sensor to scan left (160°) and right (20°)
+4. **Decision Making**:
+   - If the left path is clearer and safe (>40cm), turn left
+   - If the right path is clearer and safe (>40cm), turn right
+   - If both paths are blocked, reverse and turn right
+5. **Validation**: Multiple sensor readings are averaged to prevent false detections
 
-        If Right distance > Left distance and above 40cm: Turn Right.
+## Configuration
 
-        If Both are blocked: Reverse, then turn 180 degrees.
+You can adjust these parameters in the code to customize behavior:
 
- Installation
+```cpp
+#define SAFE_DISTANCE 40   // Minimum clearance needed to turn (cm)
+#define STOP_DISTANCE 30   // Distance to trigger obstacle detection (cm)
+#define MAX_SPEED 100      // Forward/turning speed (0-255)
+#define REVERSE_SPEED 80   // Reverse speed (0-255)
+```
 
-    Ensure you have the Servo library installed in your Arduino IDE (pre-installed by default).
+## Serial Monitor Output
 
-    Connect your hardware according to the Pin Mapping table.
+Open the Serial Monitor (115200 baud) to see real-time debugging information:
 
-    Open Obstacle_Avoiding_Robot.ino in the Arduino IDE.
+```
+--- OBSTACLE AVOIDING ROBOT ---
+System Ready!
+Distance: 85 cm
+Distance: 72 cm
+⚠️ Obstacle detected! Scanning...
+Left: 65 cm
+Right: 25 cm
+→ Turning LEFT
+```
 
-    Select your Board and Port.
+## Troubleshooting
 
-    Click Upload.
+### Robot doesn't move
+- Check motor driver connections and power supply
+- Verify battery voltage is sufficient (7-12V)
+- Test motors directly with the motor driver
+
+### Erratic sensor readings
+- Ensure sensor is mounted firmly
+- Check for loose connections on TRIG and ECHO pins
+- Avoid metallic or sound-absorbing obstacles during testing
+
+### Robot gets stuck in loops
+- Adjust `SAFE_DISTANCE` and `STOP_DISTANCE` values
+- Increase turn delays for sharper turns
+- Check that servo is centered properly at 90°
+
+### Servo jitters
+- Use external power supply for servo if needed
+- Add a small capacitor (100µF) across servo power lines
+
+## Future Enhancements
+
+- [ ] Add line-following capability
+- [ ] Implement PID control for smoother movement
+- [ ] Add Bluetooth control via smartphone app
+- [ ] Include speed sensors for odometry
+- [ ] Multi-sensor array for better obstacle detection
+
+## License
+
+This project is open-source and available under the MIT License.
+
+## Contributing
+
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
+
+## Acknowledgments
+
+Built with the Arduino platform and inspired by the maker community.
+
+---
+
+**Made with ❤️ for robotics enthusiasts**
