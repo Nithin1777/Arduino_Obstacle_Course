@@ -1,4 +1,4 @@
-# Obstacle Avoiding Robot 🤖
+# Obstacle Avoiding Robot 
 
 An autonomous Arduino-based robot car that uses ultrasonic sensors and a servo-mounted scanner to detect and navigate around obstacles in real-time.
 
