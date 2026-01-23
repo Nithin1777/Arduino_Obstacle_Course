@@ -161,8 +161,5 @@ Contributions are welcome! Feel free to:
 
 ## Acknowledgments
 
-Built with the Arduino platform and inspired by the maker community.
 
----
-
-**Made with ❤️ for robotics enthusiasts**
+**For the robotics club, Nithin Sankar K**
