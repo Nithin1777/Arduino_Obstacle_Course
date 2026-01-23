@@ -16,7 +16,7 @@ An autonomous Arduino-based robot car that uses ultrasonic sensors and a servo-m
 
 - Arduino board (Uno/Nano recommended)
 - L298N Motor Driver Module
-- 2x DC Motors with wheels
+- 4x DC Motors with wheels
 - HC-SR04 Ultrasonic Sensor
 - SG90 Servo Motor
 - Active Buzzer
