@@ -140,13 +140,6 @@ Right: 25 cm
 - Use external power supply for servo if needed
 - Add a small capacitor (100µF) across servo power lines
 
-## Future Enhancements
-
-- [ ] Add line-following capability
-- [ ] Implement PID control for smoother movement
-- [ ] Add Bluetooth control via smartphone app
-- [ ] Include speed sensors for odometry
-- [ ] Multi-sensor array for better obstacle detection
 
 ## License
 
@@ -162,4 +155,7 @@ Contributions are welcome! Feel free to:
 ## Acknowledgments
 
 
-**For the robotics club, Nithin Sankar K**
+**For the robotics club**
+**Head Engineer SPICE**
+**Technical Lead**
+**Nithin Sankar K**
