@@ -155,10 +155,10 @@ Contributions are welcome! Feel free to:
 ## Acknowledgments
 
 
-For the robotics club
+**For the robotics club**
 
 Head Engineer SPICE
 
-Technical Lead
+Technical Lead Robotics Club 
 
 Nithin Sankar K
