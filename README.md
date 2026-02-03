@@ -156,6 +156,9 @@ Contributions are welcome! Feel free to:
 
 
 For the robotics club
+
 Head Engineer SPICE
+
 Technical Lead
+
 Nithin Sankar K
